@@ -3,55 +3,50 @@
 package ex01;
 import java.io.IOException;
 import java.util.Scanner;
-import java.util.Arrays;
 
 public class Main {
  
     public static void main(String[] args) throws IOException {
  
         Scanner entrada = new Scanner(System.in);
-        FilaDinamica filaOriginal = new FilaDinamica();
-        FilaDinamica filaOrdenada = new FilaDinamica();
-        int nCasosTeste = entrada.nextInt();
-        int nAlunos[] = new int[nCasosTeste];
-        String notas[] = new String[nCasosTeste];
-
-        for(int i = 0; i < nCasosTeste; i++) {
-            nAlunos[i] = entrada.nextInt();
-            entrada.nextLine();
-            notas[i] = entrada.nextLine();
-        }
+        String nSeguidores = entrada.nextLine();
+        String diasMes = entrada.nextLine();
 
         entrada.close();
 
-        for(int i = 0; i < nCasosTeste; i++) {
-            int notasAlunosIntDesordenado[] = new int[nAlunos[i]];
-            String[] notasAlunosString = notas[i].split(" ");
-            for(int j = 0; j < notasAlunosString.length; j++) {
-                notasAlunosIntDesordenado[j] = Integer.parseInt(notasAlunosString[j]);
-                filaOriginal.enfileira(Integer.parseInt(notasAlunosString[j]));
-            }
-            
-            int[] notasAlunosIntOrdenado = notasAlunosIntDesordenado.clone();
-
-            Arrays.sort(notasAlunosIntOrdenado);
-
-            int[] notasAlunosIntOrdenadoAux = notasAlunosIntOrdenado.clone();
-
-            for(int x = 0 ; x < notasAlunosIntOrdenado.length ; x++){
-                int aux = notasAlunosIntOrdenado.length - 1;
-                notasAlunosIntOrdenado[x] = notasAlunosIntOrdenadoAux[aux - x];
-                filaOrdenada.enfileira(notasAlunosIntOrdenado[x]);
-            }
-
-            int count = 0;
-            for(int y = 0; y < notasAlunosIntDesordenado.length; y++) {
-                if(filaOriginal.desenfileira() == filaOrdenada.desenfileira()) {
-                    count++;
-                }
-            }
-
-            System.out.println(count);
+        int nSeguidoresInt[] = new int[2];
+        String[] nSeguidoresString = nSeguidores.split(" ");
+        for(int j = 0; j < 2; j++) {
+            nSeguidoresInt[j] = Integer.parseInt(nSeguidoresString[j]);
         }
+
+        int diasMesInt[] = new int[30];
+        double soma = 0;
+        String[] diasMesString = diasMes.split(" ");
+        for(int k = 0; k < 30; k++) {
+            diasMesInt[k] = Integer.parseInt(diasMesString[k]);
+            soma += diasMesInt[k];
+        }
+
+        double atual = nSeguidoresInt[0];
+        double objetivo = nSeguidoresInt[1];
+
+        double media = 0;
+        int count = 0;
+
+        while (atual < objetivo) {
+            for(int a = 0; a < 30 && atual < objetivo; ++a) {
+                media = soma/30;
+                if(media != Math.round(media)){
+                    media = Math.round(media + 0.5);
+                }
+                atual += media;
+                soma = soma + (media - diasMesInt[a]);
+                diasMesInt[a] = (int)media;
+                count++;
+            }
+        }
+
+        System.out.println(count);
     }
 }
