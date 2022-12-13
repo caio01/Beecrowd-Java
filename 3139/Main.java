@@ -1,6 +1,5 @@
 //BEECROWD - 3139
 
-package ex02;
 import java.io.IOException;
 import java.util.Scanner;
 

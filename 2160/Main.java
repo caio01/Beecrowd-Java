@@ -1,6 +1,5 @@
 //BEECROWD - 2160
 
-package ex04;
 import java.io.IOException;
 import java.util.Scanner;
 

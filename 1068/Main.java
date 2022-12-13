@@ -1,6 +1,5 @@
 //BEECROWD - 1068
 
-package ex05;
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.Queue;
