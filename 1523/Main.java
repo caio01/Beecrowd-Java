@@ -1,5 +1,3 @@
-//BEECROWD - 1523
-
 import java.io.IOException;
 import java.util.Scanner;
 
@@ -8,7 +6,7 @@ public class Main {
     public static void main(String[] args) throws IOException { 
         Scanner entrada = new Scanner(System.in);
         int s[] = new int[10010];
-        int n,k,c,f,flag,pos;
+        int n, k, c, f, flag, pos;
 
         while(true) {
             String expressao = entrada.nextLine();
@@ -23,8 +21,6 @@ public class Main {
 
             flag = 0;
             pos = -1;
-
-            
 
             for(int i = 0; i < n; i++) {
                 expressao = entrada.nextLine();
@@ -46,7 +42,8 @@ public class Main {
                                 ultimo = s[pos];
                             }
                         }
-                        if (pos >= k) {
+                        // Check if stack size after popping exceeds K-1
+                        if (pos + 1 >= k) {
                             flag = 1;
                         } else {
                             if (pos >= 0  && f > s[pos]){
@@ -62,9 +59,8 @@ public class Main {
             if(flag == 0) {
                 System.out.println("Sim");
             } else {
-                System.out.println("Não");
+                System.out.println("Nao");
             }
-
         }
         entrada.close();
     }
