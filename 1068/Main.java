@@ -40,6 +40,6 @@ public class Main {
             }
         }
         entrada.close();
-        System.out.println(texto);
+        System.out.print(texto);
     }
 }
